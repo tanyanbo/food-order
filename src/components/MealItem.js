@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+
+const MealItem = (props) => {
+  const [value, setValue] = useState(0);
+
+  const onAddClick = (e) => {
+    e.preventDefault();
+    setValue((value) => +value + 1);
+    console.log('clicked');
+  };
+
+  const onMinusClick = (e) => {
+    e.preventDefault();
+    setValue((value) => +value - 1);
+    console.log('clicked');
+  };
+
+  const onInputChange = (e) => {
+    setValue(e.target.value);
+    console.log(value);
+  };
+
+  return (
+    <div className='grid grid-cols-4 grid-rows-3 p-4 border-b'>
+      <p className='text-lg row-start-1 col-start-1 col-span-3'>{props.name}</p>
+      <p className='text-lg row-start-2 col-start-1 col-span-3'>
+        {props.description}
+      </p>
+      <p className='text-lg row-start-3 col-start-1 col-span-3'>
+        $
+        {props.price.toString().split('.')[1].length === 2
+          ? props.price
+          : props.price.toString() + '0'}
+      </p>
+      <form className='col-start-4 row-start-1 row-span-2 my-auto justify-self-end'>
+        <label htmlFor='amount' className='font-semibold inline-block'>
+          Amount
+        </label>
+        <button onClick={onMinusClick} className='focus:outline-none'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6 inline-block ml-2 bg-yellow-800 rounded-lg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='#FFFFFF'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M20 12H4'
+            />
+          </svg>
+        </button>
+        <input
+          type='text'
+          className='border  rounded-md focus: outline-none ml-2 w-14 text-center inline-block'
+          value={value || ''}
+          onChange={onInputChange}
+        />
+        <button onClick={onAddClick} className='focus:outline-none'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            className='h-6 w-6 inline-block ml-2 bg-yellow-800 rounded-lg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='#FFFFFF'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={2}
+              d='M12 6v6m0 0v6m0-6h6m-6 0H6'
+            />
+          </svg>
+        </button>
+      </form>
+      <button
+        className='row-start-3 col-start-4 bg-yellow-900 rounded-full w-48 text-white justify-self-end h-8 focus:outline-none shadow-2xl focus:shadow-sm'
+        onClick={onAddClick}
+      >
+        Add To Cart
+      </button>
+    </div>
+  );
+};
+
+export default MealItem;
