@@ -4,7 +4,7 @@ import Header from './Header';
 
 const TopBar = () => {
   return (
-    <div className='bg-red-400 grid grid-cols-10 h-28'>
+    <div className='bg-red-400 grid grid-cols-10 h-20'>
       <Header />
       <Cart />
     </div>

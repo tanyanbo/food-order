@@ -20,6 +20,17 @@ const MealItem = (props) => {
     console.log(value);
   };
 
+  const convertPrice = () => {
+    const arr = props.price.toString().split('.');
+    if (!arr[1]) {
+      return props.price.toString() + '.00';
+    } else if (arr[1].length === 1) {
+      return props.price.toString() + '0';
+    } else {
+      return props.price.toString();
+    }
+  };
+
   return (
     <div className='grid grid-cols-4 grid-rows-3 p-4 border-b'>
       <p className='text-lg row-start-1 col-start-1 col-span-3'>{props.name}</p>
@@ -27,10 +38,7 @@ const MealItem = (props) => {
         {props.description}
       </p>
       <p className='text-lg row-start-3 col-start-1 col-span-3'>
-        $
-        {props.price.toString().split('.')[1].length === 2
-          ? props.price
-          : props.price.toString() + '0'}
+        ${convertPrice()}
       </p>
       <form className='col-start-4 row-start-1 row-span-2 my-auto justify-self-end'>
         <label htmlFor='amount' className='font-semibold inline-block'>

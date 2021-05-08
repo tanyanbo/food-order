@@ -4,6 +4,7 @@ import Footer from './Footer';
 import TopBar from './header/TopBar';
 import HeroImage from './HeroImage';
 import MealList from './MealList';
+import Modal from './Modal';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Description />
       <MealList />
       <Footer />
+      <Modal />
     </div>
   );
 };
