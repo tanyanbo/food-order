@@ -40,7 +40,9 @@ orderSchema.pre('save', async function (next) {
 });
 
 orderSchema.post('save', async function (doc) {
-  await Order.findOneAndDelete({ _id: doc._id });
+  if (doc.orders.length === 0) {
+    await Order.findOneAndDelete({ _id: doc._id });
+  }
 });
 
 const Order = mongoose.model('Order', orderSchema);
