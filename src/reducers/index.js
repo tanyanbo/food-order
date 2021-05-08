@@ -23,6 +23,15 @@ const mealReducer = (state = 0, action) => {
 const mealModalReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_MEAL':
+      let x = 0;
+      const newState = [...state];
+      newState.forEach((meal) => {
+        if (meal.name === action.payload.name) {
+          meal.number += action.payload.number;
+          x++;
+        }
+      });
+      if (x > 0) return newState;
       return [...state, action.payload];
     default:
       return state;
