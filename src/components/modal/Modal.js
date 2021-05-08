@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
-import showModal from '../../actions';
+import { showModal } from '../../actions';
 import ModalList from './ModalList';
 
 const ModalScreen = (props) => {
   return (
     <div
-      className='fixed top-1/3 left-1/3 w-4/12 h-2/6 bg-white text-black z-30 rounded-2xl'
+      className='fixed top-1/4 left-1/3 w-4/12 h-3/6 bg-white text-black z-30 rounded-2xl'
       onClick={(e) => e.stopPropagation()}
     >
       <ModalList />

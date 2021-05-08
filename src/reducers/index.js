@@ -11,4 +11,26 @@ const modalReducer = (state = false, action) => {
   }
 };
 
-export default combineReducers({ modalState: modalReducer });
+const mealReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      return action.payload + state;
+    default:
+      return state;
+  }
+};
+
+const mealModalReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_MEAL':
+      return [...state, action.payload];
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  modalState: modalReducer,
+  mealsInCart: mealReducer,
+  mealListInCart: mealModalReducer,
+});

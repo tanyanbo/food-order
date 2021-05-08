@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import showModal from '../../actions';
+import { showModal } from '../../actions';
 
 const Cart = (props) => {
   const onCartClick = () => {
@@ -30,10 +30,16 @@ const Cart = (props) => {
         Your cart
       </div>
       <div className='ml-auto rounded-full bg-red-700 px-4 py-1 text-white font-semibold text-xl hidden sm:inline-block'>
-        2
+        {props.mealsInCart}
       </div>
     </div>
   );
 };
 
-export default connect(null, { showModal: showModal })(Cart);
+const mapStateToProps = (state) => {
+  return {
+    mealsInCart: state.mealsInCart,
+  };
+};
+
+export default connect(mapStateToProps, { showModal: showModal })(Cart);

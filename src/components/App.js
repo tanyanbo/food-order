@@ -8,7 +8,7 @@ import HeroImage from './header/HeroImage';
 import MealList from './meals/MealList';
 import Modal from './modal/Modal';
 
-import showModal from '../actions';
+import { showModal } from '../actions';
 
 const App = (props) => {
   return (

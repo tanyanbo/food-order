@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addMeal, addToCart } from '../../actions';
 
 const MealItem = (props) => {
   const [value, setValue] = useState(0);
@@ -11,7 +13,13 @@ const MealItem = (props) => {
 
   const onMinusClick = (e) => {
     e.preventDefault();
-    setValue((value) => +value - 1);
+    setValue((value) => {
+      if (value > 0) {
+        return +value - 1;
+      } else {
+        return 0;
+      }
+    });
     console.log('clicked');
   };
 
@@ -29,6 +37,11 @@ const MealItem = (props) => {
     } else {
       return props.price.toString();
     }
+  };
+
+  const onAddCart = () => {
+    props.addToCart(value);
+    props.addMeal(props.name, props.price, value);
   };
 
   return (
@@ -85,7 +98,7 @@ const MealItem = (props) => {
       </form>
       <button
         className='row-start-3 col-start-4 bg-yellow-900 rounded-full w-48 text-white justify-self-end h-8 focus:outline-none shadow-2xl focus:shadow-sm'
-        onClick={onAddClick}
+        onClick={onAddCart}
       >
         Add To Cart
       </button>
@@ -93,4 +106,6 @@ const MealItem = (props) => {
   );
 };
 
-export default MealItem;
+export default connect(null, { addToCart: addToCart, addMeal: addMeal })(
+  MealItem
+);
