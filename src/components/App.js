@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 import Description from './header/Description';
 import Footer from './Footer';
@@ -9,17 +10,25 @@ import MealList from './meals/MealList';
 import Modal from './modal/Modal';
 
 import { showModal } from '../actions';
+import Order from './order/Order';
 
 const App = (props) => {
   return (
-    <div className='h-full '>
+    <>
       <TopBar />
-      <HeroImage />
-      <Description />
-      <MealList />
-      <Footer />
-      {props.modalState ? <Modal /> : ''}
-    </div>
+      <Route path='/' exact>
+        <div className='h-full '>
+          <HeroImage />
+          <Description />
+          <MealList />
+          <Footer />
+          {props.modalState ? <Modal /> : ''}
+        </div>
+      </Route>
+      <Route path='/order' exact>
+        <Order />
+      </Route>
+    </>
   );
 };
 

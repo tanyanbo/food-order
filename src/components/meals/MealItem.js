@@ -8,7 +8,6 @@ const MealItem = (props) => {
   const onAddClick = (e) => {
     e.preventDefault();
     setValue((value) => +value + 1);
-    console.log('clicked');
   };
 
   const onMinusClick = (e) => {
@@ -25,7 +24,6 @@ const MealItem = (props) => {
 
   const onInputChange = (e) => {
     setValue(e.target.value);
-    console.log(value);
   };
 
   const convertPrice = () => {
@@ -42,6 +40,7 @@ const MealItem = (props) => {
   const onAddCart = () => {
     props.addToCart(value);
     props.addMeal(props.name, props.price, value);
+    setValue(0);
   };
 
   return (

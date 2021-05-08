@@ -15,6 +15,10 @@ const mealReducer = (state = 0, action) => {
   switch (action.type) {
     case 'ADD_TO_CART':
       return action.payload + state;
+
+    case 'CLEAR_ORDERS':
+      return 0;
+
     default:
       return state;
   }
@@ -31,8 +35,14 @@ const mealModalReducer = (state = [], action) => {
           x++;
         }
       });
-      if (x > 0) return newState;
+      if (x > 0) {
+        return newState;
+      }
       return [...state, action.payload];
+
+    case 'CLEAR_ORDERS':
+      return action.payload;
+
     default:
       return state;
   }

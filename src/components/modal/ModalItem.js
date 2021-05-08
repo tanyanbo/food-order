@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addToCart } from '../../actions';
+import { addMeal, addToCart } from '../../actions';
 
 const ModalItem = (props) => {
   const [amount, setAmount] = useState(props.amount);
 
   const onAddClick = () => {
+    props.addMeal(props.name, props.price, 1);
+
     setAmount((value) => value + 1);
+
     props.addToCart(1);
   };
 
   const onMinusClick = () => {
     setAmount((value) => {
       if (value > 0) {
+        props.addMeal(props.name, props.price, -1);
         props.addToCart(-1);
         return value - 1;
       } else {
@@ -83,4 +87,6 @@ const ModalItem = (props) => {
   );
 };
 
-export default connect(null, { addToCart: addToCart })(ModalItem);
+export default connect(null, { addToCart: addToCart, addMeal: addMeal })(
+  ModalItem
+);

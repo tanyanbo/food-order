@@ -5,7 +5,12 @@ import ModalItem from './ModalItem';
 const ModalList = (props) => {
   const renderedList = props.mealsList.map((meal) => {
     return (
-      <ModalItem name={meal.name} price={meal.price} amount={meal.number} />
+      <ModalItem
+        name={meal.name}
+        price={meal.price}
+        amount={meal.number}
+        key={meal.name}
+      />
     );
   });
 

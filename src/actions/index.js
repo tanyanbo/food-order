@@ -24,3 +24,10 @@ export const addMeal = (mealName, mealPrice, number) => {
     },
   };
 };
+
+export const clearOrders = () => {
+  return {
+    type: 'CLEAR_ORDERS',
+    payload: [],
+  };
+};
