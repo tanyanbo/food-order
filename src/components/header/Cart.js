@@ -1,8 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import showModal from '../../actions';
 
-const Cart = () => {
+const Cart = (props) => {
+  const onCartClick = () => {
+    props.showModal(true);
+  };
+
   return (
-    <div className='lg:col-start-8 lg:col-span-2 col-start-6 col-span-4 bg-yellow-900 rounded-full h-4/6 my-auto flex items-center px-16 cursor-pointer'>
+    <div
+      className='lg:col-start-8 lg:col-span-2 col-start-6 col-span-4 bg-yellow-900 rounded-full h-4/6 my-auto flex items-center px-16 cursor-pointer'
+      onClick={onCartClick}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className='h-6 w-6 mr-4'
@@ -27,4 +36,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default connect(null, { showModal: showModal })(Cart);

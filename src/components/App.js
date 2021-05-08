@@ -1,12 +1,16 @@
 import React from 'react';
-import Description from './Description';
+import { connect } from 'react-redux';
+
+import Description from './header/Description';
 import Footer from './Footer';
 import TopBar from './header/TopBar';
-import HeroImage from './HeroImage';
-import MealList from './MealList';
-import Modal from './Modal';
+import HeroImage from './header/HeroImage';
+import MealList from './meals/MealList';
+import Modal from './modal/Modal';
 
-const App = () => {
+import showModal from '../actions';
+
+const App = (props) => {
   return (
     <div className='h-full '>
       <TopBar />
@@ -14,9 +18,15 @@ const App = () => {
       <Description />
       <MealList />
       <Footer />
-      <Modal />
+      {props.modalState ? <Modal /> : ''}
     </div>
   );
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    modalState: state.modalState,
+  };
+};
+
+export default connect(mapStateToProps, { showModal })(App);
