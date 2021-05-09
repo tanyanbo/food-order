@@ -45,14 +45,16 @@ const MealItem = (props) => {
 
   return (
     <div className='grid grid-cols-4 grid-rows-3 p-4 border-b'>
-      <p className='text-lg row-start-1 col-start-1 col-span-3'>{props.name}</p>
-      <p className='text-lg row-start-2 col-start-1 col-span-3'>
+      <p className='text-lg row-start-1 col-start-1 md:col-span-3 col-span-1'>
+        {props.name}
+      </p>
+      <p className='text-lg row-start-2 col-start-1 md:col-span-3 col-span-1'>
         {props.description}
       </p>
-      <p className='text-lg row-start-3 col-start-1 col-span-3'>
+      <p className='text-lg row-start-3 col-start-1 md:col-span-3 col-span-1'>
         ${convertPrice()}
       </p>
-      <form className='col-start-4 row-start-1 row-span-2 my-auto justify-self-end'>
+      <form className='md:col-start-4 col-start-2 col-span-3 md:col-span-1 row-start-1 row-span-2 my-auto justify-self-end'>
         <label htmlFor='amount' className='font-semibold inline-block'>
           Amount
         </label>

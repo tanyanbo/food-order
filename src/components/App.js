@@ -11,6 +11,9 @@ import Modal from './modal/Modal';
 
 import { showModal } from '../actions';
 import Order from './order/Order';
+import Signup from './authentication/Signup';
+import Login from './authentication/Login';
+import ChangePassword from './authentication/ChangePassword';
 
 const App = (props) => {
   return (
@@ -27,6 +30,15 @@ const App = (props) => {
       </Route>
       <Route path='/order' exact>
         <Order />
+      </Route>
+      <Route path='/signup' exact>
+        <Signup />
+      </Route>
+      <Route path='/login' exact>
+        <Login />
+      </Route>
+      <Route path='/changepassword' exact>
+        <ChangePassword />
       </Route>
     </>
   );

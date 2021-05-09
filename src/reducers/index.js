@@ -48,8 +48,18 @@ const mealModalReducer = (state = [], action) => {
   }
 };
 
+const loginStateReducer = (state = 'LOGIN', action) => {
+  switch (action.type) {
+    case 'LOGIN_STATE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   modalState: modalReducer,
   mealsInCart: mealReducer,
   mealListInCart: mealModalReducer,
+  loginState: loginStateReducer,
 });

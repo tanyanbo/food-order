@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { showModal } from '../../actions';
+import { Link } from 'react-router-dom';
 
 const Header = (props) => {
   const history = useHistory();
-
   return (
     <div
       className='sm:text-4xl text-2xl text-white font-semibold col-start-2 col-span-3 my-auto cursor-pointer'

@@ -1,16 +1,42 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { clearOrders, showModal } from '../../actions';
 
 const Order = (props) => {
   const history = useHistory();
+  const nameRef = useRef();
+  const addressRef = useRef();
+  const postalCodeRef = useRef();
+  const contactNumberRef = useRef();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    props.clearOrders();
-    props.showModal(false);
-    history.push('/');
+    if (
+      nameRef.current.value &&
+      addressRef.current.value &&
+      postalCodeRef.current.value &&
+      contactNumberRef.current.value
+    ) {
+      axios
+        .post('http://127.0.0.1:3000/order', {
+          name: nameRef.current.value,
+          address: `${addressRef.current.value}, ${postalCodeRef.current.value}`,
+          contactNumber: contactNumberRef.current.value,
+          orders: props.orders,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((e) => console.log(e));
+
+      props.clearOrders();
+      props.showModal(false);
+      history.push('/');
+    } else {
+      alert('Please enter all required fields');
+    }
   };
 
   return (
@@ -22,6 +48,7 @@ const Order = (props) => {
             Name <span className='text-red-600'>*</span>
           </label>
           <input
+            ref={nameRef}
             type='text'
             id='name'
             className='border rounded-lg border-gray-300 w-full h-8'
@@ -32,6 +59,7 @@ const Order = (props) => {
             Address <span className='text-red-600'>*</span>
           </label>
           <input
+            ref={addressRef}
             type='text'
             id='Address'
             className='border rounded-lg border-gray-300 w-full h-8'
@@ -42,6 +70,7 @@ const Order = (props) => {
             Postal Code <span className='text-red-600'>*</span>
           </label>
           <input
+            ref={postalCodeRef}
             type='text'
             id='PostalCode'
             className='border rounded-lg border-gray-300 w-full h-8'
@@ -52,6 +81,7 @@ const Order = (props) => {
             Contact Number <span className='text-red-600'>*</span>
           </label>
           <input
+            ref={contactNumberRef}
             type='text'
             id='ContactNumber'
             className='border rounded-lg border-gray-300 w-full h-8'
@@ -68,7 +98,11 @@ const Order = (props) => {
   );
 };
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return { orders: state.mealListInCart };
+};
+
+export default connect(mapStateToProps, {
   clearOrders: clearOrders,
   showModal: showModal,
 })(Order);

@@ -31,3 +31,10 @@ export const clearOrders = () => {
     payload: [],
   };
 };
+
+export const loginState = (state) => {
+  return {
+    type: 'LOGIN_STATE',
+    payload: state,
+  };
+};

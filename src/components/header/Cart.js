@@ -9,7 +9,7 @@ const Cart = (props) => {
 
   return (
     <div
-      className='lg:col-start-8 lg:col-span-2 col-start-6 col-span-4 bg-yellow-900 rounded-full h-4/6 my-auto flex items-center px-16 cursor-pointer'
+      className='lg:col-start-7 lg:col-span-2 col-start-6 col-span-4 bg-yellow-900 rounded-full h-4/6 my-auto flex items-center 2xl:px-16 cursor-pointer px-4'
       onClick={onCartClick}
     >
       <svg
@@ -27,7 +27,7 @@ const Cart = (props) => {
         />
       </svg>
       <div className='text-white font-semibold text-2xl my-auto hidden sm:inline-block'>
-        Your cart
+        Cart
       </div>
       <div className='ml-auto rounded-full bg-red-700 px-4 py-1 text-white font-semibold text-xl hidden sm:inline-block'>
         {props.mealsInCart}
